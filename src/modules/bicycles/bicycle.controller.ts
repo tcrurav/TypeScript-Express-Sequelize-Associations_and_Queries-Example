@@ -30,7 +30,7 @@ export class BicycleController {
 
       if (!bicycle) {
         res.status(404).json({
-          message: "Bicicleta no encontrada",
+          message: "Bicycle not found",
         });
 
         return;
@@ -54,7 +54,7 @@ export class BicycleController {
 
       if (brandId == undefined || !model || price === undefined) {
         res.status(400).json({
-          message: "brandId, model y price son obligatorios",
+          message: "brandId, model, and price are required",
         });
 
         return;
@@ -88,7 +88,7 @@ export class BicycleController {
 
       if (!bicycle) {
         res.status(404).json({
-          message: "Bicicleta no encontrada",
+          message: "Bicycle not found",
         });
 
         return;
@@ -119,7 +119,7 @@ export class BicycleController {
 
       if (!bicycle) {
         res.status(404).json({
-          message: "Bicicleta no encontrada",
+          message: "Bicycle not found",
         });
 
         return;
