@@ -50,18 +50,18 @@ export class BicycleController {
     next: NextFunction
   ) {
     try {
-      const { brand, model, description, price, stock } = req.body;
+      const { brandId, model, description, price, stock } = req.body;
 
-      if (!brand || !model || price === undefined) {
+      if (brandId == undefined || !model || price === undefined) {
         res.status(400).json({
-          message: "brand, model y price son obligatorios",
+          message: "brandId, model y price son obligatorios",
         });
 
         return;
       }
 
       const bicycle = await BicycleService.create({
-        brand,
+        brandId,
         model,
         description,
         price,
