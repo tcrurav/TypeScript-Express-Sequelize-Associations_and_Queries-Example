@@ -1,20 +1,20 @@
-## Diagrama de Entidad-Relación (ERD) Bicycle 1:N Brand
+## Diagrama de Entidad-Relación (ERD) Brand 1:N Bicycle
 
 ```mermaid
 erDiagram
-    Brand ||--o{ Bicycle : has
+    BRAND ||--o{ BICYCLE : has
 
-    Brand {
-        number id PK
+    BRAND {
+        int id PK
         string name
     }
 
-    Bicycle {
-        number id PK
-        number brandId FK
+    BICYCLE {
+        int id PK
+        int brandId FK
         string model
         string description
-        number price
-        number stock
+        float price
+        int stock
     }
 ```
