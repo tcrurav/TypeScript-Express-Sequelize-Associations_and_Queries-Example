@@ -1,8 +1,7 @@
-# Prueba Mermaid
+````markdown
+# Mermaid test
 
 ```mermaid
 graph TD
-    A[Brand] --> B[Bicycle]
-
-
-# Otra cosa
+    A --> B
+```
