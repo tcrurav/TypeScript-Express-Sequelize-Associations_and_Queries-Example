@@ -1,20 +1,6 @@
-## Diagrama de Entidad-Relación (ERD) Brand 1:N Bicycle
+# Prueba Mermaid
 
 ```mermaid
-erDiagram
-    BRAND ||--o{ BICYCLE : has
-
-    BRAND {
-        int id PK
-        string name
-    }
-
-    BICYCLE {
-        int id PK
-        int brandId FK
-        string model
-        string description
-        float price
-        int stock
-    }
+graph TD
+    A[Brand] --> B[Bicycle]
 ```
