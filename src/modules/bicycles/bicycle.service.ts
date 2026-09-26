@@ -24,7 +24,6 @@ export class BicycleService {
     });
   }
 
-
   static async create(data: {
     brandId: number;
     model: string;
@@ -34,7 +33,6 @@ export class BicycleService {
   }) {
     return Bicycle.create(data);
   }
-
 
   static async update(
     bicycle: Bicycle,
@@ -48,7 +46,6 @@ export class BicycleService {
   ) {
     return bicycle.update(data);
   }
-
 
   static async delete(bicycle: Bicycle) {
     await bicycle.destroy();
