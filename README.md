@@ -103,7 +103,22 @@ erDiagram
     }
 ```
 
-## Entity-Relationship Diagram (ERD) Bicycle 1:N BicycleDetail
+## Entity-Relationship Diagram (ERD) Brand 1:N Bicycle
+
+```mermaid
+erDiagram
+    Brand ||--o{ Bicycle : has
+
+    Brand {
+
+    }
+
+    Bicycle {
+
+    }
+```
+
+## Entity-Relationship Diagram (ERD) Bicycle 1:1 BicycleDetail
 
 ```mermaid
 erDiagram
@@ -127,6 +142,20 @@ erDiagram
         string suspension
     }
 ```
+## Entity-Relationship Diagram (ERD) Bicycle 1:1 BicycleDetail
+
+```mermaid
+erDiagram
+    Bicycle ||--o| BicycleDetail : has
+
+    Bicycle {
+
+    }
+
+    BicycleDetail {
+
+    }
+```
 
 ## Entity-Relationship Diagram (ERD) (with fields)
 
@@ -145,6 +174,20 @@ erDiagram
         number customerId FK
         datetime orderDate
         string status
+    }
+```
+## Entity-Relationship Diagram (ERD) (without  fields)
+
+```mermaid
+erDiagram
+    Customer ||--o{ Order : has
+
+    Customer {
+
+    }
+
+    Order {
+
     }
 ```
 ## Entity-Relationship Diagram (ERD) (with fields)
@@ -176,5 +219,24 @@ erDiagram
         number bicycleId FK
         number quantity
         number unitPrice
+    }
+```
+## Entity-Relationship Diagram (ERD) (without fields)
+
+```mermaid
+erDiagram
+    Order ||--o{ OrderItem : has
+    Bicycle ||--o{ OrderItem : has
+
+    Bicycle {
+
+    }
+
+    Order {
+
+    }
+
+    OrderItem {
+
     }
 ```
