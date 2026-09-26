@@ -5,7 +5,7 @@ Diagrama de Entidad-Relación (ERD) Bicycle 1:N Brand:
 erDiagram
     Bicycle {
         number id PK
-        string brandId FK
+        number brandId FK
         string model
         string description
         number price
@@ -17,5 +17,5 @@ erDiagram
         string name
     }
 
-    Bicycle ||--o{ Brand : ""
+    Bicycle ||--o{ Brand : has
 ```
