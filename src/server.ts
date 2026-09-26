@@ -18,11 +18,11 @@ async function startServer() {
     console.log("MySQL connection established.");
 
     // Synchronize the models with the database.
-    // await sequelize.sync();
+    await sequelize.sync();
 
-    await sequelize.sync({ force: true }).then(() => {
-      console.log("Database synchronized.");
-    });
+    // await sequelize.sync({ force: true }).then(() => {
+    //   console.log("Database synchronized.");
+    // });
 
     console.log("Models synchronized.");
 

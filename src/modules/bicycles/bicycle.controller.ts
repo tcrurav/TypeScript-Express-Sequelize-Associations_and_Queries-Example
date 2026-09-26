@@ -17,6 +17,46 @@ export class BicycleController {
     }
   }
 
+  static async getAllEagerlyByFrameMaterial(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const frameMaterial = String(req.params.frameMaterial);
+
+      const bicycles = await BicycleService.findAllEagerlyByFrameMaterial(frameMaterial);
+
+      res.json(bicycles);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async getAllEagerlyById(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const id = Number(req.params.id);
+
+      const bicycle = await BicycleService.findEagerlyById(id);
+
+      if (!bicycle) {
+        res.status(404).json({
+          message: "Bicycle not found",
+        });
+
+        return;
+      }
+
+      res.json(bicycle);
+
+    } catch (error) {
+      next(error);
+    }
+  }
 
   static async getById(
     req: Request,
