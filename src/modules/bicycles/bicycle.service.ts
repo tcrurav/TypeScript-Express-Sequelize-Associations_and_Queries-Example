@@ -9,7 +9,6 @@ export class BicycleService {
     });
   }
 
-
   static async findById(id: number) {
     return Bicycle.findByPk(id);
   }
