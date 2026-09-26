@@ -1,6 +1,20 @@
-````markdown
-# Mermaid test
+## Diagrama de Entidad-Relación (ERD) Brand 1:N Bicycle
 
 ```mermaid
-graph TD
-    A --> B
+erDiagram
+    BRAND ||--o{ BICYCLE : has
+
+    BRAND {
+        int id PK
+        string name
+    }
+
+    BICYCLE {
+        int id PK
+        int brandId FK
+        string model
+        string description
+        float price
+        int stock
+    }
+```
