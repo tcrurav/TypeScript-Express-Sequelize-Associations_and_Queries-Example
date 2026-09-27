@@ -1,10 +1,21 @@
 import { Order } from "./order.model";
+import { Customer } from "../customers/customer.model";
 
 export class OrderService {
 
   static async findAll() {
     return Order.findAll({
       order: [["id", "ASC"]],
+    });
+  }
+
+  // Find all orders for a specific customer
+  static async findByCustomerId(customerId: number) {
+    return Order.findAll({
+      where: { customerId },
+      include: [{ model: Customer, as: "customer", attributes: ["id", "name", "email"] }],
+      order: [["orderDate", "DESC"]],
+
     });
   }
 
