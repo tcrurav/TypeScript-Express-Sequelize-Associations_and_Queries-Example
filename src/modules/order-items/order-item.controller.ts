@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { OrderItemService } from "./orderItem-item.service";
+import { OrderItemService } from "./order-item.service";
 
 export class OrderItemController {
 
@@ -48,20 +48,21 @@ export class OrderItemController {
     next: NextFunction
   ) {
     try {
-      const { customerId, orderDate, status } = req.body;
+      const { orderId, bicycleId, quantity, unitPrice } = req.body;
 
-      if (customerId == undefined || orderDate == undefined || status == undefined) {
+      if (orderId == undefined || bicycleId == undefined || quantity == undefined || unitPrice == undefined) {
         res.status(400).json({
-          message: "customerId, orderDate, and status are required",
+          message: "orderId, bicycleId, quantity, and unitPrice are required",
         });
 
         return;
       }
 
       const orderItem = await OrderItemService.create({
-        customerId,
-        orderDate,
-        status
+        orderId,
+        bicycleId,
+        quantity,
+        unitPrice
       });
 
       res.status(201).json(orderItem);
@@ -90,12 +91,12 @@ export class OrderItemController {
         return;
       }
 
-      const updateOrder = await OrderItemService.update(
+      const updateOrderItem = await OrderItemService.update(
         orderItem,
         req.body
       );
 
-      res.json(updateOrder);
+      res.json(updateOrderItem);
 
     } catch (error) {
       next(error);

@@ -13,17 +13,11 @@ export class OrderItem extends Model<
   InferCreationAttributes<OrderItem>
 > {
   declare id: CreationOptional<number>;
-
   declare orderId: number;
-
   declare bicycleId: number;
-
   declare quantity: number;
-
   declare unitPrice: number;
-
   declare createdAt: CreationOptional<Date>;
-
   declare updatedAt: CreationOptional<Date>;
 }
 
@@ -53,10 +47,5 @@ OrderItem.init(
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
   },
-  {
-    sequelize,
-    tableName: "order_items",
-    modelName: "OrderItem",
-    timestamps: true,
-  }
+  { sequelize, tableName: "order_items", modelName: "OrderItem", timestamps: true }
 );

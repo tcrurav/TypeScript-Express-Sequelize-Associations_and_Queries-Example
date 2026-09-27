@@ -13,25 +13,27 @@ export class OrderItemService {
   }
 
   static async create(data: {
-    customerId: number;
-    orderDate: Date;
-    status: "pending" | "paid" | "shipped" | "cancelled";
+    orderId: number;
+    bicycleId: number;
+    quantity: number;
+    unitPrice: number;
   }) {
     return OrderItem.create(data);
   }
 
   static async update(
-    bicycle: OrderItem,
+    orderItem: OrderItem,
     data: {
-      customerId?: number;
-      orderDate?: Date;
-      status?: "pending" | "paid" | "shipped" | "cancelled";
+      orderId?: number;
+      bicycleId?: number;
+      quantity?: number;
+      unitPrice?: number;
     }
   ) {
-    return bicycle.update(data);
+    return orderItem.update(data);
   }
 
-  static async delete(bicycle: OrderItem) {
-    await bicycle.destroy();
+  static async delete(orderItem: OrderItem) {
+    await orderItem.destroy();
   }
 }

@@ -3,6 +3,7 @@ import { Bicycle } from "../modules/bicycles/bicycle.model";
 import { Brand } from "../modules/brands/brand.model";
 import { Customer } from "../modules/customers/customer.model";
 import { Order } from "../modules/orders/order.model";
+import { OrderItem } from "../modules/order-items/order-item.model";
 
 export function defineAssociations() {
     Brand.hasMany(Bicycle, { foreignKey: "brandId", as: "bicycles" });
