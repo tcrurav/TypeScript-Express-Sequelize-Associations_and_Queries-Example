@@ -1,4 +1,6 @@
 import { Customer } from "./customer.model";
+import { Order } from "../orders/order.model";
+import { Op } from "sequelize";
 
 export class CustomerService {
 
@@ -8,11 +10,16 @@ export class CustomerService {
     });
   }
 
+  static async findCustomersWithOrdersByNameSearch(nameSearch: string) {
+    return Customer.findAll({
+      where: { name: { [Op.like]: `%${nameSearch}%` } },
+      include: [{ model: Order, as: "orders", required: true }],
+    });
+  }
 
   static async findById(id: number) {
     return Customer.findByPk(id);
   }
-
 
   static async create(data: {
     name: string;
@@ -20,7 +27,6 @@ export class CustomerService {
   }) {
     return Customer.create(data);
   }
-
 
   static async update(
     customer: Customer,
@@ -31,7 +37,6 @@ export class CustomerService {
   ) {
     return customer.update(data);
   }
-
 
   static async delete(customer: Customer) {
     await customer.destroy();
