@@ -17,6 +17,21 @@ export class OrderController {
     }
   }
 
+  static async getByCustomerId(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const customerId = Number(req.params.id);
+      const orders = await OrderService.findByCustomerId(customerId);
+
+      res.json(orders);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   static async getById(
     req: Request,
     res: Response,
