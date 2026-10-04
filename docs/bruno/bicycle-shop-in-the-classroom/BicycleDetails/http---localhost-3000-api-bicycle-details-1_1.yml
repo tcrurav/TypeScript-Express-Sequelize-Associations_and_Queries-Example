@@ -1,0 +1,31 @@
+info:
+  name: http://localhost:3000/api/bicycle-details/1_1
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: http://localhost:3000/api/bicycle-details/1
+  body:
+    type: json
+    data: "{\r
+
+      \  \"bicycleId\": 1,\r
+
+      \  \"frameMaterial\": \"Carbon\",\r
+
+      \  \"wheelSize\": 10,\r
+
+      \  \"weight\": 189.99,\r
+
+      \  \"suspension\": \"SuperSuspension\"\r
+
+      }"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
