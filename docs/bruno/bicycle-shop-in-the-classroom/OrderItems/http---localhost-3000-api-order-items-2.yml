@@ -1,0 +1,29 @@
+info:
+  name: http://localhost:3000/api/order-items/2
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: http://localhost:3000/api/order-items/1
+  body:
+    type: json
+    data: "{\r
+
+      \  \"orderId\": 1,\r
+
+      \  \"bicycleId\": 1,\r
+
+      \  \"quantity\": 7,\r
+
+      \  \"unitPrice\": 3\r
+
+      }"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
