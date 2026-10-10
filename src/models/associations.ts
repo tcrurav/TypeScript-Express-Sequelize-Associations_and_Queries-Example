@@ -1,9 +1,9 @@
-import { BicycleDetail } from "../modules/bicycle-details/bicycle-detail.model";
-import { Bicycle } from "../modules/bicycles/bicycle.model";
-import { Brand } from "../modules/brands/brand.model";
-import { Customer } from "../modules/customers/customer.model";
-import { Order } from "../modules/orders/order.model";
-import { OrderItem } from "../modules/order-items/order-item.model";
+import { BicycleDetail } from "../modules/bicycle-details/bicycle-detail.model.js";
+import { Bicycle } from "../modules/bicycles/bicycle.model.js";
+import { Brand } from "../modules/brands/brand.model.js";
+import { Customer } from "../modules/customers/customer.model.js";
+import { Order } from "../modules/orders/order.model.js";
+import { OrderItem } from "../modules/order-items/order-item.model.js";
 
 export function defineAssociations() {
     Brand.hasMany(Bicycle, { foreignKey: "brandId", as: "bicycles" });

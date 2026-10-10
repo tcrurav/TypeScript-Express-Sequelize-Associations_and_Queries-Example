@@ -7,7 +7,7 @@ import {
     Model
 } from "sequelize";
 
-import { sequelize } from "../../config/database";
+import { sequelize } from "../../config/database.js";
 
 export class Brand extends Model<
     InferAttributes<Brand>, InferCreationAttributes<Brand>

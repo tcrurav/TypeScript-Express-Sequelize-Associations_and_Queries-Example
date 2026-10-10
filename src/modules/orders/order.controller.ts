@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { OrderService } from "./order.service";
+import { OrderService } from "./order.service.js";
 
 export class OrderController {
 

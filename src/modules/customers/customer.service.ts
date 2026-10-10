@@ -1,5 +1,5 @@
-import { Customer } from "./customer.model";
-import { Order } from "../orders/order.model";
+import { Customer } from "./customer.model.js";
+import { Order } from "../orders/order.model.js";
 import { Op } from "sequelize";
 
 export class CustomerService {

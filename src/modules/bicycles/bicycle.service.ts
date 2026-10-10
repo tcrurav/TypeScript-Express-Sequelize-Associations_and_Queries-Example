@@ -1,6 +1,6 @@
-import { BicycleDetail } from "../bicycle-details/bicycle-detail.model";
-import { Brand } from "../brands/brand.model";
-import { Bicycle } from "./bicycle.model";
+import { BicycleDetail } from "../bicycle-details/bicycle-detail.model.js";
+import { Brand } from "../brands/brand.model.js";
+import { Bicycle } from "./bicycle.model.js";
 
 export class BicycleService {
 

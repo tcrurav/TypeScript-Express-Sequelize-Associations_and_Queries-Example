@@ -1,4 +1,4 @@
-import { Brand } from "./brand.model";
+import { Brand } from "./brand.model.js";
 
 export class BrandService {
 
