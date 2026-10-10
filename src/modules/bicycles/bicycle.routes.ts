@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { BicycleController } from "./bicycle.controller";
+import { BicycleController } from "./bicycle.controller.js";
 
 const router = Router();
 

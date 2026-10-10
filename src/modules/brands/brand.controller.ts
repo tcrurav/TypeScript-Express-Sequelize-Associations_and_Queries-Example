@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { BrandService } from "./brand.service";
+import { BrandService } from "./brand.service.js";
 
 export class BrandController {
 

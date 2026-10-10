@@ -6,7 +6,7 @@ import {
   CreationOptional,
 } from "sequelize";
 
-import { sequelize } from "../../config/database";
+import { sequelize } from "../../config/database.js";
 
 export class Order extends Model<
   InferAttributes<Order>,
@@ -35,6 +35,7 @@ Order.init(
     customerId: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
+      references: { model: "customers", key: "id" }
     },
     orderDate: { type: DataTypes.DATE, allowNull: false, defaultValue: DataTypes.NOW },
     status: {

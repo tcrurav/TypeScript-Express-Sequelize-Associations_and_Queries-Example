@@ -1,5 +1,5 @@
-import { Order } from "./order.model";
-import { Customer } from "../customers/customer.model";
+import { Order } from "./order.model.js";
+import { Customer } from "../customers/customer.model.js";
 
 export class OrderService {
 
