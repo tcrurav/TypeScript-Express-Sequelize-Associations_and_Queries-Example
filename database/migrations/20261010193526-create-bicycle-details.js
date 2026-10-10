@@ -1,0 +1,43 @@
+'use strict';
+
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up(queryInterface, Sequelize) {
+
+    await queryInterface.createTable('bicycle_details', {
+      id: {
+        type: Sequelize.INTEGER.UNSIGNED,
+        autoIncrement: true,
+        primaryKey: true
+      },
+      bicycleId: {
+        type: Sequelize.INTEGER.UNSIGNED,
+        allowNull: false,
+        references: { model: "bicycles", key: "id" },
+        onUpdate: "CASCADE",
+        onDelete: "RESTRICT",
+      },
+      frameMaterial: {
+        type: Sequelize.ENUM("Aluminum", "Carbon", "Steel", "Titanium")
+      },
+      wheelSize: {
+        type: Sequelize.DECIMAL(4, 1),
+        allowNull: false
+      },
+      weight: {
+        type: Sequelize.DECIMAL(5, 2)
+      },
+      suspension: {
+        type: Sequelize.STRING(80),
+        allowNull: true
+      },
+      createdAt: { type: Sequelize.DATE },
+      updatedAt: { type: Sequelize.DATE },
+    });
+
+  },
+
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('bicycle_details');
+  }
+};

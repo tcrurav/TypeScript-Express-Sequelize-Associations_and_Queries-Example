@@ -9,6 +9,9 @@ export const sequelize = new Sequelize(
     host: env.DB_HOST,
     port: env.DB_PORT,
     dialect: "mysql",
-    logging: false,
+    logging:
+      env.NODE_ENV === "development"
+        ? console.log
+        : false,
   }
 );

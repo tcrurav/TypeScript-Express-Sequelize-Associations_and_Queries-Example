@@ -31,10 +31,12 @@ OrderItem.init(
     orderId: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
+      references: { model: "orders", key: "id" }
     },
     bicycleId: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
+      references: { model: "bicycles", key: "id" }
     },
     quantity: {
       type: DataTypes.INTEGER.UNSIGNED, allowNull: false,

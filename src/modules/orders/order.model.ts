@@ -35,6 +35,7 @@ Order.init(
     customerId: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
+      references: { model: "customers", key: "id" }
     },
     orderDate: { type: DataTypes.DATE, allowNull: false, defaultValue: DataTypes.NOW },
     status: {

@@ -34,20 +34,29 @@ BicycleDetail.init(
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
       autoIncrement: true,
-      primaryKey: true },
+      primaryKey: true
+    },
     bicycleId: {
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false },
+      allowNull: false,
+      references: { model: "bicycles", key: "id" },
+      onUpdate: "CASCADE",
+      onDelete: "RESTRICT",
+    },
     frameMaterial: {
-      type: DataTypes.ENUM("Aluminum", "Carbon", "Steel", "Titanium") },
+      type: DataTypes.ENUM("Aluminum", "Carbon", "Steel", "Titanium")
+    },
     wheelSize: {
       type: DataTypes.DECIMAL(4, 1),
-      allowNull: false },
+      allowNull: false
+    },
     weight: {
-      type: DataTypes.DECIMAL(5, 2) },
+      type: DataTypes.DECIMAL(5, 2)
+    },
     suspension: {
       type: DataTypes.STRING(80),
-      allowNull: true },
+      allowNull: true
+    },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
   },
