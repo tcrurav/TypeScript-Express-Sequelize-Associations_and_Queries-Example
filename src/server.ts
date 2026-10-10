@@ -1,15 +1,15 @@
-import { app } from "./app";
-import { sequelize } from "./config/database";
-import { env } from "./config/env";
-import { defineAssociations } from "./models/associations";
+import { app } from "./app.js";
+import { sequelize } from "./config/database.js";
+import { env } from "./config/env.js";
+import { defineAssociations } from "./models/associations.js";
 
 // Import models so Sequelize registers them.
-import "./modules/bicycles/bicycle.model";
-import "./modules/brands/brand.model";
-import "./modules/bicycle-details/bicycle-detail.model";
-import "./modules/customers/customer.model";
-import "./modules/orders/order.model";
-import "./modules/order-items/order-item.model";
+import "./modules/bicycles/bicycle.model.js";
+import "./modules/brands/brand.model.js";
+import "./modules/bicycle-details/bicycle-detail.model.js";
+import "./modules/customers/customer.model.js";
+import "./modules/orders/order.model.js";
+import "./modules/order-items/order-item.model.js";
 
 async function startServer() {
   try {

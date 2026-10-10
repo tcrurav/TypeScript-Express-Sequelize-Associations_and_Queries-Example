@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { BicycleDetailService } from "./bicycle-detail.service";
+import { BicycleDetailService } from "./bicycle-detail.service.js";
 
 export class BicycleDetailController {
 

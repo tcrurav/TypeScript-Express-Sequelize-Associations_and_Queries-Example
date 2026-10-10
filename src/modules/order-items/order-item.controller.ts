@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { OrderItemService } from "./order-item.service";
+import { OrderItemService } from "./order-item.service.js";
 
 export class OrderItemController {
 

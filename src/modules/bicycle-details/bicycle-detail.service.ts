@@ -1,5 +1,5 @@
 
-import { BicycleDetail } from "./bicycle-detail.model";
+import { BicycleDetail } from "./bicycle-detail.model.js";
 
 export class BicycleDetailService {
 

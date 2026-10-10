@@ -7,7 +7,7 @@ import {
     Model
 } from "sequelize";
 
-import { sequelize } from "../../config/database";
+import { sequelize } from "../../config/database.js";
 
 export class Customer extends Model<
     InferAttributes<Customer>, InferCreationAttributes<Customer>

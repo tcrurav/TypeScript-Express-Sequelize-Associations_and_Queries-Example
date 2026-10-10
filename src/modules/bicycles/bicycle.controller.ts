@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { BicycleService } from "./bicycle.service";
+import { BicycleService } from "./bicycle.service.js";
 
 export class BicycleController {
 
