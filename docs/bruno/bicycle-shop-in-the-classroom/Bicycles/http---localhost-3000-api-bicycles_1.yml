@@ -21,7 +21,9 @@ http:
       \  \"stock\": 10\r
 
       }"
-  auth: inherit
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3OTI4NzM0NzAsImV4cCI6MTc5Mjg3NzA3MCwiYXVkIjoiYmljeWNsZS1zaG9wLWNsaWVudCIsImlzcyI6ImJpY3ljbGUtc2hvcC1hcGkiLCJzdWIiOiIxIn0.MRvpwNp2Mgr-zNh62c7PV6vbjJHS_meSihqzM-Gn590
 
 settings:
   encodeUrl: true

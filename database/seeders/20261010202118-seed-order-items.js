@@ -13,9 +13,22 @@ module.exports = {
       created_at: now,
       updated_at: now,
     }], {});
+
+    // Synchronize PostgreSQL autoincrement
+    if (queryInterface.sequelize.getDialect() === "postgres") {
+      await queryInterface.sequelize.query(`
+        SELECT setval(
+          pg_get_serial_sequence('public.order_items', 'id'),
+          COALESCE((SELECT MAX(id) FROM public.order_items), 0) + 1,
+          false
+        );
+      `);
+    }
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('order_items', null, {});
+    await queryInterface.bulkDelete('order_items', {
+      id: [1]
+    });
   }
 };

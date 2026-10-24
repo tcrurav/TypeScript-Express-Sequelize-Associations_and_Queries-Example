@@ -1,7 +1,10 @@
 import { Router } from "express";
 import { OrderItemController } from "./order-item.controller.js";
+import { bearerAuth } from "../../middlewares/bearer-auth-middleware.js";
 
 const router = Router();
+
+router.use(bearerAuth);
 
 router.get("/", OrderItemController.getAll);
 

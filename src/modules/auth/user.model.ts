@@ -30,8 +30,7 @@ User.init(
       unique: true },
     passwordHash: {
       type: DataTypes.STRING(255),
-      allowNull: false,
-      field: "password_hash" },
+      allowNull: false },
     role: {
       type: DataTypes.STRING(100),
       allowNull: false },
