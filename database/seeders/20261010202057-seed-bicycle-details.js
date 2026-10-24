@@ -6,13 +6,13 @@ module.exports = {
     const now = new Date();
     await queryInterface.bulkInsert('bicycle_details', [{
       id: 1,
-      bicycleId: 1,
-      frameMaterial: "Aluminum",
-      wheelSize: 2,
+      bicycle_id: 1,
+      frame_material: "Aluminum",
+      wheel_size: 2,
       weight: 30,
       suspension: "hidráulica",
-      createdAt: now,
-      updatedAt: now,
+      created_at: now,
+      updated_at: now,
     }], {});
   },
 

@@ -23,6 +23,7 @@ async function startServer() {
     // Synchronize the models with the database.
     await sequelize.sync();
 
+    // Drop tables and Recreate everything.
     // await sequelize.sync({ force: true }).then(() => {
     //   console.log("Database synchronized.");
     // });

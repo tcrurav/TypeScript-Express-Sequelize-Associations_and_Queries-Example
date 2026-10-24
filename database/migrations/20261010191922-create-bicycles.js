@@ -10,7 +10,7 @@ module.exports = {
         primaryKey: true,
         allowNull: false,
       },
-      brandId: {
+      brand_id: {
         type: Sequelize.INTEGER.UNSIGNED,
         allowNull: false,
         references: { model: "brands", key: "id" },
@@ -37,8 +37,8 @@ module.exports = {
         allowNull: false,
         defaultValue: 0,
       },
-      createdAt: { type: Sequelize.DATE },
-      updatedAt: { type: Sequelize.DATE },
+      created_at: { type: Sequelize.DATE },
+      updated_at: { type: Sequelize.DATE },
     })
   },
   async down(queryInterface, Sequelize) {

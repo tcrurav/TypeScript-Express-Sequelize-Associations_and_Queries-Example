@@ -8,14 +8,14 @@ module.exports = {
       id: 1,
       name: "Pepe",
       email: "pepe@pepe.com",
-      createdAt: now,
-      updatedAt: now
+      created_at: now,
+      updated_at: now
     }, {
       id: 2,
       name: "Juan",
       email: "juan@juan.com",
-      createdAt: now,
-      updatedAt: now
+      created_at: now,
+      updated_at: now
     }], {});
   },
 

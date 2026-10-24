@@ -18,7 +18,7 @@ function getConfig(environment) {
         database: variables.DB_NAME,
         host: variables.DB_HOST,
         port: Number(variables.DB_PORT ?? 3306),
-        dialect: "mysql",
+        dialect: variables.DB_DIALECT,
         logging: false,
         migrationStorage: "sequelize",
         seederStorage: "sequelize" };

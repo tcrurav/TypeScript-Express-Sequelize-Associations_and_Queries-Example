@@ -10,17 +10,17 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true
       },
-      bicycleId: {
+      bicycle_id: {
         type: Sequelize.INTEGER.UNSIGNED,
         allowNull: false,
         references: { model: "bicycles", key: "id" },
         onUpdate: "CASCADE",
         onDelete: "RESTRICT",
       },
-      frameMaterial: {
+      frame_material: {
         type: Sequelize.ENUM("Aluminum", "Carbon", "Steel", "Titanium")
       },
-      wheelSize: {
+      wheel_size: {
         type: Sequelize.DECIMAL(4, 1),
         allowNull: false
       },
@@ -31,8 +31,8 @@ module.exports = {
         type: Sequelize.STRING(80),
         allowNull: true
       },
-      createdAt: { type: Sequelize.DATE },
-      updatedAt: { type: Sequelize.DATE },
+      created_at: { type: Sequelize.DATE },
+      updated_at: { type: Sequelize.DATE },
     });
 
   },

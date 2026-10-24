@@ -9,12 +9,12 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      orderId: {
+      order_id: {
         type: Sequelize.INTEGER.UNSIGNED,
         allowNull: false,
         references: { model: "orders", key: "id" }
       },
-      bicycleId: {
+      bicycle_id: {
         type: Sequelize.INTEGER.UNSIGNED,
         allowNull: false,
         references: { model: "bicycles", key: "id" }
@@ -23,12 +23,12 @@ module.exports = {
         type: Sequelize.INTEGER.UNSIGNED, allowNull: false,
         validate: { min: 1 }
       },
-      unitPrice: {
+      unit_price: {
         type: Sequelize.DECIMAL(10, 2), allowNull: false,
         validate: { min: 0 }
       },
-      createdAt: { type: Sequelize.DATE },
-      updatedAt: { type: Sequelize.DATE },
+      created_at: { type: Sequelize.DATE },
+      updated_at: { type: Sequelize.DATE },
     });
   },
 

@@ -6,13 +6,13 @@ module.exports = {
     const now = new Date();
     await queryInterface.bulkInsert('bicycles', [{
       id: 1,
-      brandId: 1,
+      brand_id: 1,
       model: "Alma H30",
       description: "Bicicleta de montaña",
       price: 1199.00,
       stock: 8,
-      createdAt: now,
-      updatedAt: now,
+      created_at: now,
+      updated_at: now,
     }], {});
   },
 

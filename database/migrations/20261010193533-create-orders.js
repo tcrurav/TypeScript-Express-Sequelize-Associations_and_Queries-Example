@@ -9,18 +9,18 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      customerId: {
+      customer_id: {
         type: Sequelize.INTEGER.UNSIGNED,
         allowNull: false,
         references: { model: "customers", key: "id" }
       },
-      orderDate: { type: Sequelize.DATE, allowNull: false, defaultValue: Sequelize.NOW },
+      order_date: { type: Sequelize.DATE, allowNull: false, defaultValue: Sequelize.NOW },
       status: {
         type: Sequelize.ENUM("pending", "paid", "shipped", "cancelled"),
         allowNull: false, defaultValue: "pending"
       },
-      createdAt: { type: Sequelize.DATE },
-      updatedAt: { type: Sequelize.DATE },
+      created_at: { type: Sequelize.DATE },
+      updated_at: { type: Sequelize.DATE },
     });
   },
 

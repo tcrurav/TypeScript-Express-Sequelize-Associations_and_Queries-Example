@@ -6,11 +6,11 @@ module.exports = {
     const now = new Date();
     await queryInterface.bulkInsert('orders', [{
       id: 1,
-      customerId: 1,
-      orderDate: now,
+      customer_id: 1,
+      order_date: now,
       status: "paid",
-      createdAt: now,
-      updatedAt: now,
+      created_at: now,
+      updated_at: now,
     }], {});
   },
 

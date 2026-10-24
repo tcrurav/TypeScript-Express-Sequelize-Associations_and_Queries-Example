@@ -7,13 +7,13 @@ module.exports = {
     await queryInterface.bulkInsert('brands', [{
       id: 1,
       name: "Orbea",
-      createdAt: now,
-      updatedAt: now
+      created_at: now,
+      updated_at: now
     }, {
       id: 2,
       name: "Trek",
-      createdAt: now,
-      updatedAt: now
+      created_at: now,
+      updated_at: now
     }], {});
   },
 

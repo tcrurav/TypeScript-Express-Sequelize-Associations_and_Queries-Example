@@ -60,5 +60,5 @@ BicycleDetail.init(
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
   },
-  { sequelize, tableName: "bicycle-details", modelName: "BicycleDetail", timestamps: true }
+  { sequelize, tableName: "bicycle_details", modelName: "BicycleDetail", timestamps: true }
 );
