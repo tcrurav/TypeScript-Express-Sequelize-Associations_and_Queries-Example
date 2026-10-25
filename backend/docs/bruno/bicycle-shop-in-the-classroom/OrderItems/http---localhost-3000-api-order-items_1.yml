@@ -1,0 +1,31 @@
+info:
+  name: http://localhost:3000/api/order-items_1
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: http://localhost:3000/api/order-items
+  body:
+    type: json
+    data: "{\r
+
+      \  \"orderId\": 1,\r
+
+      \  \"bicycleId\": 1,\r
+
+      \  \"quantity\": 2,\r
+
+      \  \"unitPrice\": 3\r
+
+      }"
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3OTI4NzM0NzAsImV4cCI6MTc5Mjg3NzA3MCwiYXVkIjoiYmljeWNsZS1zaG9wLWNsaWVudCIsImlzcyI6ImJpY3ljbGUtc2hvcC1hcGkiLCJzdWIiOiIxIn0.MRvpwNp2Mgr-zNh62c7PV6vbjJHS_meSihqzM-Gn590
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
