@@ -10,10 +10,7 @@ export interface Session {
 export function getSession(): Session | null {
     try {
         const session = JSON.parse(sessionStorage.getItem(KEY) ?? 'null') as Session | null
-        if (session &&
-            typeof session.token === 'string' &&
-            typeof session.username === 'string' &&
-            session.expiresAt > Date.now())
+        if (session && session.expiresAt > Date.now())
             return session
     } catch { /* Ignore invalid or unavailable browser storage. */ }
     return null
