@@ -21,33 +21,33 @@ function updateValidationMessage(input: HTMLInputElement) {
     let message = ''
 
     if (validity.badInput) {
-        message = 'Introduce un número válido.'
+        message = 'Enter a valid number.'
     } else if (validity.valueMissing) {
         const requiredMessages: Record<string, string> = {
-            brand: 'Introduce la marca de la bicicleta.',
-            model: 'Introduce el modelo de la bicicleta.',
-            price: 'Introduce el precio de la bicicleta.',
-            stock: 'Introduce la cantidad de existencias.',
+            brand: 'Enter the bicycle brand.',
+            model: 'Enter the bicycle model.',
+            price: 'Enter the bicycle price.',
+            stock: 'Enter the stock quantity.',
         }
-        message = requiredMessages[name] ?? 'Completa este campo.'
+        message = requiredMessages[name] ?? 'Complete this field.'
     } else if (validity.patternMismatch) {
         message = name === 'brand'
-            ? 'La marca no puede contener solo espacios.'
-            : 'El modelo no puede contener solo espacios.'
+            ? 'The brand cannot contain only spaces.'
+            : 'The model cannot contain only spaces.'
     } else if (validity.tooLong) {
-        message = 'Introduce un máximo de 150 caracteres.'
+        message = 'Enter no more than 150 characters.'
     } else if (validity.rangeUnderflow) {
         message = name === 'price'
-            ? 'El precio debe ser mayor o igual que 0.'
-            : 'Las existencias deben ser mayores o iguales que 0.'
+            ? 'The price must be greater than or equal to 0.'
+            : 'Stock must be greater than or equal to 0.'
     } else if (validity.rangeOverflow) {
         message = name === 'price'
             ? 'El precio no puede superar 99.999.999,99 €.'
-            : 'Las existencias no pueden superar 4.294.967.295 unidades.'
+            : 'Stock cannot exceed 4,294,967,295 units.'
     } else if (validity.stepMismatch) {
         message = name === 'price'
-            ? 'Introduce un precio con un máximo de dos decimales.'
-            : 'Introduce un número entero de existencias.'
+            ? 'Enter a price with no more than two decimal places.'
+            : 'Enter a whole number for stock.'
     }
 
     input.setCustomValidity(message)
@@ -65,34 +65,34 @@ function BicycleFormFields({ values, brands, onChange, disabled }: BicycleFormFi
                 if (event.target instanceof HTMLInputElement) updateValidationMessage(event.target)
             }}>
             <label className="block">
-                Marca
+                Brand
                 <select autoFocus name="brandId" required
                     className={inputClass} value={values.brandId}
                     onChange={(event) => onChange('brandId', event.target.value)}>
-                    <option value="">Selecciona una marca</option>
+                    <option value="">Select a brand</option>
                     {brands.map(brand => <option key={brand.id} value={brand.id}>{brand.name}</option>)}
                 </select>
             </label>
             <label className="block">
-                Modelo
+                Model
                 <input name="model" required maxLength={150} pattern=".*\S.*"
                     className={inputClass} value={values.model}
                     onChange={(event) => onChange('model', event.target.value)} />
             </label>
             <label className="block">
-                Descripción (opcional)
+                Description (optional)
                 <textarea name="description" rows={3} className={inputClass}
                     value={values.description}
                     onChange={(event) => onChange('description', event.target.value)} />
             </label>
             <label className="block">
-                Precio (€)
+                Price (€)
                 <input name="price" type="number" required min="0" max="99999999.99" step="0.01"
                     className={inputClass} value={values.price}
                     onChange={(event) => onChange('price', event.target.value)} />
             </label>
             <label className="block">
-                Existencias
+                Stock
                 <input name="stock" type="number" required min="0" max="4294967295" step="1"
                     className={inputClass} value={values.stock}
                     onChange={(event) => onChange('stock', event.target.value)} />

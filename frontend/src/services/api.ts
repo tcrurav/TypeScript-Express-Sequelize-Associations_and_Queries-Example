@@ -19,8 +19,8 @@ export async function apiFetch<T>(
         const body = await response.json().catch(() => null)
         const message = typeof body?.message === 'string' ? body.message : null
         throw new Error(response.status === 401 ?
-            'Usuario o contraseña incorrectos. Vuelve a iniciar sesión.'
-            : message || `No se pudo completar la solicitud (${response.status}).`);
+            'Incorrect username or password. Please sign in again.'
+            : message || `Could not complete the request (${response.status}).`);
     }
 
     const text = await response.text();

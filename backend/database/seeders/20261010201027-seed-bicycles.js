@@ -8,7 +8,7 @@ module.exports = {
       id: 1,
       brand_id: 1,
       model: "Alma H30",
-      description: "Bicicleta de montaña",
+      description: "Mountain bike",
       price: 1199.00,
       stock: 8,
       created_at: now,

@@ -10,7 +10,7 @@ module.exports = {
       frame_material: "Aluminum",
       wheel_size: 2,
       weight: 30,
-      suspension: "hidráulica",
+      suspension: "Hydraulic",
       created_at: now,
       updated_at: now,
     }], {});

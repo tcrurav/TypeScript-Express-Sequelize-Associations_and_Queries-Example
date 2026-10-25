@@ -14,13 +14,13 @@ function BicycleList({ bicycles, onEdit, onDelete}: BicycleListProps) {
                 className={`hidden gap-4 bg-gray-800 p-4 font-semibold text-white lg:grid ${
                     onEdit || onDelete ? 'lg:grid-cols-5' : 'lg:grid-cols-4'
                 }`}>
-                <span>Marca</span>
-                <span>Modelo</span>
-                <span>Precio</span>
-                <span>Existencias</span>
-                {(onEdit || onDelete) && <span>Acciones</span>}
+                <span>Brand</span>
+                <span>Model</span>
+                <span>Price</span>
+                <span>Stock</span>
+                {(onEdit || onDelete) && <span>Actions</span>}
             </div>
-            <ul aria-label="Listado de bicicletas" className="grid min-w-0 gap-4 lg:gap-0">
+            <ul aria-label="Bicycle list" className="grid min-w-0 gap-4 lg:gap-0">
                 {bicycles.map((bicycle) => (
                     <BicycleRow key={bicycle.id} bicycle={bicycle}
                         onEdit={onEdit} onDelete={onDelete} />
