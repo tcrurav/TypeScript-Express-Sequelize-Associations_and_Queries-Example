@@ -1,5 +1,7 @@
+import type { Brand } from '../../brands/services/brandService'
+
 export interface BicycleFormValues {
-    brand: string
+    brandId: string
     model: string
     description: string
     price: string
@@ -8,6 +10,7 @@ export interface BicycleFormValues {
 
 interface BicycleFormFieldsProps {
     values: BicycleFormValues
+    brands: Brand[]
     onChange: (field: keyof BicycleFormValues, value: string) => void
     disabled?: boolean
 }
@@ -50,7 +53,7 @@ function updateValidationMessage(input: HTMLInputElement) {
     input.setCustomValidity(message)
 }
 
-function BicycleFormFields({ values, onChange, disabled }: BicycleFormFieldsProps) {
+function BicycleFormFields({ values, brands, onChange, disabled }: BicycleFormFieldsProps) {
     const inputClass = 'mt-1 w-full rounded border border-gray-300 p-2'
 
     return (
@@ -63,9 +66,12 @@ function BicycleFormFields({ values, onChange, disabled }: BicycleFormFieldsProp
             }}>
             <label className="block">
                 Marca
-                <input autoFocus name="brand" required maxLength={150} pattern=".*\S.*"
-                    className={inputClass} value={values.brand}
-                    onChange={(event) => onChange('brand', event.target.value)} />
+                <select autoFocus name="brandId" required
+                    className={inputClass} value={values.brandId}
+                    onChange={(event) => onChange('brandId', event.target.value)}>
+                    <option value="">Selecciona una marca</option>
+                    {brands.map(brand => <option key={brand.id} value={brand.id}>{brand.name}</option>)}
+                </select>
             </label>
             <label className="block">
                 Modelo

@@ -4,6 +4,7 @@ import Button from '../../../components/ui/Button'
 import type { Bicycle, BicyclePayload } from '../types/bicycle'
 import BicycleFormFields from './BicycleFormFields'
 import type { BicycleFormValues } from './BicycleFormFields'
+import { useBrands } from '../../brands/hooks/useBrands'
 
 interface BicycleFormProps {
     bicycle: Bicycle | null
@@ -13,8 +14,9 @@ interface BicycleFormProps {
 }
 
 function BicycleForm({ bicycle, onSave, onCancel, onSavingChange }: BicycleFormProps) {
+    const { brands, loading, error: brandsError, reload } = useBrands()
     const [values, setValues] = useState<BicycleFormValues>(() => ({
-        brand: bicycle?.brand ?? '',
+        brandId: bicycle ? String(bicycle.brandId) : '',
         model: bicycle?.model ?? '',
         description: bicycle?.description ?? '',
         price: bicycle ? String(bicycle.price) : '',
@@ -29,14 +31,14 @@ function BicycleForm({ bicycle, onSave, onCancel, onSavingChange }: BicycleFormP
         if (submitting.current) return
 
         const payload: BicyclePayload = {
-            brand: values.brand.trim(),
+            brandId: Number(values.brandId),
             model: values.model.trim(),
             description: values.description.trim() || null,
             price: Number(values.price),
             stock: Number(values.stock),
         }
 
-        if (!payload.brand || !payload.model || !values.price.trim() || !values.stock.trim()
+        if (loading || brandsError || !brands.some(brand => brand.id === payload.brandId) || !payload.model || !values.price.trim() || !values.stock.trim()
             || !Number.isFinite(payload.price) || payload.price < 0 || payload.price > 99999999.99
             || !Number.isInteger(payload.stock) || payload.stock < 0 || payload.stock > 4294967295) {
             setError('Revisa la marca, el modelo, el precio y las existencias.')
@@ -60,13 +62,16 @@ function BicycleForm({ bicycle, onSave, onCancel, onSavingChange }: BicycleFormP
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4" aria-busy={saving}>
-            <BicycleFormFields values={values} disabled={saving}
+            {loading && <p role="status">Cargando marcas...</p>}
+            {brandsError && <div><p role="alert" className="text-red-600">{brandsError}</p><Button type="button" onClick={() => void reload()} variant="secondary" className="rounded px-3 py-2">Volver a cargar marcas</Button></div>}
+            {!loading && !brandsError && brands.length === 0 && <p role="status">No hay marcas disponibles. Crea una en la sección Marcas antes de guardar una bicicleta.</p>}
+            <BicycleFormFields values={values} brands={brands} disabled={saving || loading || !!brandsError || brands.length === 0}
                 onChange={(field, value) => setValues((previous) => ({ ...previous, [field]: value }))} />
             {error && <p role="alert" className="text-red-600">{error}</p>}
             <div className="flex justify-end gap-2">
                 <Button type="button" variant="secondary" disabled={saving} onClick={onCancel}
                     className="rounded px-4 py-2 disabled:opacity-50">Cancelar</Button>
-                <Button type="submit" disabled={saving} className="rounded px-4 py-2 disabled:opacity-50">
+                <Button type="submit" disabled={saving || loading || !!brandsError || brands.length === 0} className="rounded px-4 py-2 disabled:opacity-50">
                     {saving ? 'Guardando...' : bicycle ? 'Guardar cambios' : 'Crear bicicleta'}
                 </Button>
             </div>

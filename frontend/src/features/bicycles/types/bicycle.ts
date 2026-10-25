@@ -1,6 +1,7 @@
 export interface Bicycle {
     id: number
     brand: string
+    brandId: number
     model: string
     description: string | null
     price: number | string
@@ -9,7 +10,7 @@ export interface Bicycle {
     updatedAt?: string
 }
 export interface BicyclePayload {
-    brand: string
+    brandId: number
     model: string
     description: string | null
     price: number
