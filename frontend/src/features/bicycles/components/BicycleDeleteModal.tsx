@@ -28,20 +28,20 @@ function BicycleDeleteModal({ bicycle, deleting, onConfirm, onClose }: BicycleDe
                 event.preventDefault()
                 if (!deleting) onClose()
             }}>
-            <h2 id={titleId} className="mb-4 text-xl font-bold">Eliminar bicicleta</h2>
+            <h2 id={titleId} className="mb-4 text-xl font-bold">Delete bicycle</h2>
             <p id={descriptionId} className="mb-6">
-                ¿Quieres eliminar la bicicleta <strong>{bicycle.brand} {bicycle.model}</strong>?
-                {' '}Esta acción no se puede deshacer.
+                Do you want to delete the bicycle <strong>{bicycle.brand} {bicycle.model}</strong>?
+                {' '}This action cannot be undone.
             </p>
-            {deleting && <p role="status" className="mb-4">Eliminando bicicleta...</p>}
+            {deleting && <p role="status" className="mb-4">Deleting bicycle...</p>}
             <div className="flex justify-end gap-2">
                 <Button autoFocus type="button" variant="secondary" disabled={deleting}
                     onClick={onClose} className="rounded px-4 py-2 disabled:opacity-50">
-                    Cancelar
+                    Cancel
                 </Button>
                 <Button type="button" variant="danger" disabled={deleting}
                     onClick={onConfirm} className="rounded px-4 py-2 disabled:opacity-50">
-                    {deleting ? 'Eliminando...' : 'Eliminar'}
+                    {deleting ? 'Deleting...' : 'Delete'}
                 </Button>
             </div>
         </dialog>

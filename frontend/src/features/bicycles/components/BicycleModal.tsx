@@ -27,7 +27,7 @@ function BicycleModal({ bicycle, onSave, onClose }: BicycleModalProps) {
                 if (!saving) onClose()
             }}>
             <h2 id={titleId} className="mb-4 text-xl font-bold">
-                {bicycle ? 'Editar bicicleta' : 'Nueva bicicleta'}
+                {bicycle ? 'Edit bicycle' : 'New bicycle'}
             </h2>
             <BicycleForm bicycle={bicycle} onSave={onSave} onCancel={onClose}
                 onSavingChange={setSaving} />

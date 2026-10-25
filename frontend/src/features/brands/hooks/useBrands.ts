@@ -10,7 +10,7 @@ export function useBrands() {
         setLoading(true)
         setError('')
         try { setBrands(await brandService.getAll()) }
-        catch { setError('No se pudieron cargar las marcas.') }
+        catch { setError('Could not load brands.') }
         finally { setLoading(false) }
     }, [])
     useEffect(() => {
@@ -18,7 +18,7 @@ export function useBrands() {
         void brandService.getAll().then(data => {
             if (active) setBrands(data)
         }).catch(() => {
-            if (active) setError('No se pudieron cargar las marcas.')
+            if (active) setError('Could not load brands.')
         }).finally(() => {
             if (active) setLoading(false)
         })

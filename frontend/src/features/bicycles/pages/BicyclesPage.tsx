@@ -41,9 +41,9 @@ function BicyclesPage() {
     return (
         <main className="mx-auto max-w-6xl p-4 sm:p-6">
             <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                <h1 className="text-3xl font-bold">Listado de Bicicletas</h1>
+                <h1 className="text-3xl font-bold">Bicycle list</h1>
                 <Button onClick={() => openModal(null)} disabled={loading || deleting}
-                    className="rounded px-4 py-2 disabled:opacity-50">Nueva bicicleta</Button>
+                    className="rounded px-4 py-2 disabled:opacity-50">New bicycle</Button>
             </div>
 
             {error && !modalOpen && (
@@ -51,15 +51,15 @@ function BicyclesPage() {
                     <p role="alert" className="text-red-600">{error}</p>
                     <Button variant="secondary" disabled={loading || deleting}
                         onClick={() => void loadBicycles()} className="mt-2 rounded px-4 py-2">
-                        Volver a cargar
+                        Reload
                     </Button>
                 </div>
             )}
 
             {loading ? (
-                <p role="status">Cargando bicicletas...</p>
+                <p role="status">Loading bicycles...</p>
             ) : bicycles.length === 0 ? (
-                !error && <p>No hay bicicletas disponibles.</p>
+                !error && <p>No bicycles available.</p>
             ) : (
                 <BicycleList bicycles={bicycles}
                     onEdit={deleting ? undefined : (id) => {

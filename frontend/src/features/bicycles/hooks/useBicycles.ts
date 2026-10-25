@@ -15,7 +15,7 @@ export function useBicycles() {
             setBicycles(data)
         }
         catch {
-            setError('No se pudieron cargar las bicicletas.')
+            setError('Could not load bicycles.')
         }
         finally {
             setLoading(false)
@@ -35,7 +35,7 @@ export function useBicycles() {
                 await bicycleService.update(id, payload)
             }
         } catch {
-            setError('No se pudo guardar la bicicleta.')
+            setError('Could not save the bicycle.')
             throw new Error('Could not save bicycle')
         }
         await loadBicycles()
@@ -47,7 +47,7 @@ export function useBicycles() {
             await bicycleService.remove(id)
             await loadBicycles()
         } catch {
-            setError('No se pudo eliminar la bicicleta.')
+            setError('Could not delete the bicycle.')
         }
     }
     

@@ -12,7 +12,7 @@ async function authenticate(action: 'login' | 'register', { username, password }
     })
 
     if (!result.token || !Number.isFinite(result.expiresIn) || result.expiresIn <= 0) {
-        throw new Error('El servidor no devolvió una sesión válida.');
+        throw new Error('The server did not return a valid session.');
     }
     saveSession({ token: result.token, username: username.trim(), expiresAt: Date.now() + result.expiresIn * 1000 })
     
