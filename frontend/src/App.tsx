@@ -21,11 +21,11 @@ function App() {
   return <>
     <header className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 px-6 py-4">
       <span className="font-semibold text-emerald-700">Bicycle Shop · {session.username}</span>
-      <button type="button" onClick={clearSession} className="rounded-lg border border-slate-300 px-4 py-2 hover:bg-slate-100">Cerrar sesión</button>
+      <button type="button" onClick={clearSession} className="rounded-lg border border-slate-300 px-4 py-2 hover:bg-slate-100">Sign out</button>
     </header>
-    <nav aria-label="Gestión de la tienda" className="mx-auto flex max-w-6xl gap-2 px-4 pt-6 sm:px-6">
-      <button type="button" aria-current={page === 'bicycles' ? 'page' : undefined} onClick={() => setPage('bicycles')} className={`rounded px-4 py-2 ${page === 'bicycles' ? 'bg-blue-600 text-white' : 'bg-gray-100'}`}>Bicicletas</button>
-      <button type="button" aria-current={page === 'brands' ? 'page' : undefined} onClick={() => setPage('brands')} className={`rounded px-4 py-2 ${page === 'brands' ? 'bg-blue-600 text-white' : 'bg-gray-100'}`}>Marcas</button>
+    <nav aria-label="Shop management" className="mx-auto flex max-w-6xl gap-2 px-4 pt-6 sm:px-6">
+      <button type="button" aria-current={page === 'bicycles' ? 'page' : undefined} onClick={() => setPage('bicycles')} className={`rounded px-4 py-2 ${page === 'bicycles' ? 'bg-blue-600 text-white' : 'bg-gray-100'}`}>Bicycles</button>
+      <button type="button" aria-current={page === 'brands' ? 'page' : undefined} onClick={() => setPage('brands')} className={`rounded px-4 py-2 ${page === 'brands' ? 'bg-blue-600 text-white' : 'bg-gray-100'}`}>Brands</button>
     </nav>
     {page === 'bicycles' ? <BicyclesPage /> : <BrandsPage />}
   </>

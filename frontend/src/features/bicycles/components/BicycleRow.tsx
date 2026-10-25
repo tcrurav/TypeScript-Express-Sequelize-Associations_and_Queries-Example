@@ -18,19 +18,19 @@ function BicycleRow({
         }`}>
             <dl className="grid min-w-0 grid-cols-2 gap-4 lg:contents">
                 <div className="min-w-0">
-                    <dt className="mb-1 text-sm text-gray-600 lg:sr-only">Marca</dt>
+                    <dt className="mb-1 text-sm text-gray-600 lg:sr-only">Brand</dt>
                     <dd className="font-semibold [overflow-wrap:anywhere]">{bicycle.brand}</dd>
                 </div>
                 <div className="min-w-0">
-                    <dt className="mb-1 text-sm text-gray-600 lg:sr-only">Modelo</dt>
+                    <dt className="mb-1 text-sm text-gray-600 lg:sr-only">Model</dt>
                     <dd className="[overflow-wrap:anywhere]">{bicycle.model}</dd>
                 </div>
                 <div className="min-w-0">
-                    <dt className="mb-1 text-sm text-gray-600 lg:sr-only">Precio</dt>
+                    <dt className="mb-1 text-sm text-gray-600 lg:sr-only">Price</dt>
                     <dd className="[overflow-wrap:anywhere]">{Number(bicycle.price).toFixed(2)} €</dd>
                 </div>
                 <div className="min-w-0">
-                    <dt className="mb-1 text-sm text-gray-600 lg:sr-only">Existencias</dt>
+                    <dt className="mb-1 text-sm text-gray-600 lg:sr-only">Stock</dt>
                     <dd className="[overflow-wrap:anywhere]">{bicycle.stock}</dd>
                 </div>
             </dl>
@@ -38,12 +38,12 @@ function BicycleRow({
                 <div className="flex min-w-0 flex-wrap gap-2 border-t border-gray-100 pt-4 lg:border-0 lg:pt-0">
                     {onEdit && <Button type="button" variant="secondary"
                         className="min-h-11 flex-1 rounded px-3 py-2 lg:flex-none"
-                        aria-label={`Editar ${bicycle.brand} ${bicycle.model}`}
-                        onClick={() => onEdit(bicycle.id)}>Editar</Button>}
+                        aria-label={`Edit ${bicycle.brand} ${bicycle.model}`}
+                        onClick={() => onEdit(bicycle.id)}>Edit</Button>}
                     {onDelete && <Button type="button" variant="danger"
                         className="min-h-11 flex-1 rounded px-3 py-2 lg:flex-none"
-                        aria-label={`Eliminar ${bicycle.brand} ${bicycle.model}`}
-                        onClick={() => onDelete(bicycle.id)}>Eliminar</Button>}
+                        aria-label={`Delete ${bicycle.brand} ${bicycle.model}`}
+                        onClick={() => onDelete(bicycle.id)}>Delete</Button>}
                 </div>
             )}
         </li>

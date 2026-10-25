@@ -5,7 +5,7 @@ dotenv.config();
 const NODE_ENV = process.env.NODE_ENV ?? "development";
 
 if (!["development", "test", "production"].includes(NODE_ENV)) {
-  throw new Error(`Entorno no válido: ${NODE_ENV}`);
+  throw new Error(`Invalid environment: ${NODE_ENV}`);
 }
 
 if (NODE_ENV !== "production") {
