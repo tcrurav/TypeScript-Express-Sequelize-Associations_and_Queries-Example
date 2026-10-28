@@ -4,6 +4,11 @@ import { Brand } from "../modules/brands/brand.model.js";
 import { Customer } from "../modules/customers/customer.model.js";
 import { Order } from "../modules/orders/order.model.js";
 import { OrderItem } from "../modules/order-items/order-item.model.js";
+import { User } from "../modules/auth/user.model.js";
+import { Role } from "../modules/rbac/role.model.js";
+import { UserRole } from "../modules/rbac/user-role.model.js";
+import { RolePermission } from "../modules/rbac/role-permission.model.js";
+import { Permission } from "../modules/rbac/permission.model.js";
 
 export function defineAssociations() {
     Brand.hasMany(Bicycle, { foreignKey: "brandId", as: "bicycles" });
@@ -27,9 +32,27 @@ export function defineAssociations() {
         through: OrderItem, foreignKey: "bicycleId", otherKey: "orderId",
         as: "orders",
     });
+    
     Order.hasMany(OrderItem, { foreignKey: "orderId", as: "items" });
     OrderItem.belongsTo(Order, { foreignKey: "orderId", as: "order" });
     Bicycle.hasMany(OrderItem, { foreignKey: "bicycleId", as: "orderItems" });
     OrderItem.belongsTo(Bicycle, { foreignKey: "bicycleId", as: "bicycle" });
 
+    User.belongsToMany(Role, {
+        through: UserRole, foreignKey: "userId", otherKey: "roleId",
+        as: "roles",
+    });
+    Role.belongsToMany(User, {
+        through: OrderItem, foreignKey: "roleId", otherKey: "userId",
+        as: "users",
+    });
+
+    Role.belongsToMany(Permission, {
+        through: RolePermission, foreignKey: "roleId", otherKey: "permissionId",
+        as: "roles",
+    });
+    Permission.belongsToMany(Role, {
+        through: OrderItem, foreignKey: "permissionId", otherKey: "roleId",
+        as: "permissions",
+    });
 }

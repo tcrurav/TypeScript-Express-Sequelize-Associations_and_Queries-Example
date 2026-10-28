@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { CustomerController } from "./customer.controller.js";
-import { bearerAuth } from "../../middlewares/bearer-auth-middleware.js";
+import { bearerAuth } from "../../middlewares/bearer-auth.middleware.js";
 
 const router = Router();
 

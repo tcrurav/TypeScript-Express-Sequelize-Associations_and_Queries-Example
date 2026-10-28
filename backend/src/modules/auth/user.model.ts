@@ -12,7 +12,6 @@ export class User extends Model<InferAttributes<User>, InferCreationAttributes<U
   declare id: CreationOptional<number>;
   declare username: CreationOptional<String>;
   declare passwordHash: CreationOptional<String>;
-  declare role: CreationOptional<String>;
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
 }
@@ -30,9 +29,6 @@ User.init(
       unique: true },
     passwordHash: {
       type: DataTypes.STRING(255),
-      allowNull: false },
-    role: {
-      type: DataTypes.STRING(100),
       allowNull: false },
     createdAt: DataTypes.DATE, updatedAt: DataTypes.DATE,
   },
