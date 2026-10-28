@@ -39,5 +39,5 @@ RolePermission.init(
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
   },
-  { sequelize, tableName: "user_roles", modelName: "RolePermission", timestamps: true }
+  { sequelize, tableName: "role_permissions", modelName: "RolePermission", timestamps: true }
 );

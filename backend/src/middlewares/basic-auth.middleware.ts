@@ -17,6 +17,7 @@ export async function extractBasicAuthHeader(req: Request, res: Response, next: 
     const credentials = Buffer.from(String(base64Credentials), 'base64').toString('utf-8');
     const [username, password] = credentials.split(':');
 
+    // anything inside locals allows to share info between controllers and middlewares
     res.locals.authUser = {
       username: username,
       password: password

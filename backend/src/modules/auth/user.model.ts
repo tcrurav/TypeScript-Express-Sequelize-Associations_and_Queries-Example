@@ -7,6 +7,7 @@ import {
 } from "sequelize";
 
 import { sequelize } from "../../config/database.js";
+import { Role } from "../rbac/role.model.js";
 
 export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   declare id: CreationOptional<number>;
@@ -14,6 +15,8 @@ export class User extends Model<InferAttributes<User>, InferCreationAttributes<U
   declare passwordHash: CreationOptional<String>;
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
+
+  declare roles?: Role[];
 }
 
 User.init(

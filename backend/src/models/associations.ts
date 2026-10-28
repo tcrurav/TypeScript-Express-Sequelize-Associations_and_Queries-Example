@@ -43,16 +43,16 @@ export function defineAssociations() {
         as: "roles",
     });
     Role.belongsToMany(User, {
-        through: OrderItem, foreignKey: "roleId", otherKey: "userId",
+        through: UserRole, foreignKey: "roleId", otherKey: "userId",
         as: "users",
     });
 
     Role.belongsToMany(Permission, {
         through: RolePermission, foreignKey: "roleId", otherKey: "permissionId",
-        as: "roles",
+        as: "permissions",
     });
     Permission.belongsToMany(Role, {
-        through: OrderItem, foreignKey: "permissionId", otherKey: "roleId",
-        as: "permissions",
+        through: RolePermission, foreignKey: "permissionId", otherKey: "roleId",
+        as: "roles",
     });
 }

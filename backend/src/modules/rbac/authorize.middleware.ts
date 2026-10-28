@@ -3,24 +3,39 @@ import {
   Response,
   NextFunction
 } from "express";
+import { RbacService } from "./rbac.service.js";
 
 export const authorize = (requiredPermission: string) => {
-  return (
+  return async (
     req: Request,
     res: Response,
     next: NextFunction
-  ): void => {
+  ): Promise<void> => {
 
-    const user = req.user;
+    const userId = res.locals.authUser.user.id;
 
-    if (!user) {
+    if (!userId) {
       res.status(401).json({
         message: "Authentication required"
       });
       return;
     }
+    console.log("userId", userId)
 
-    if (!user.permissions.includes(requiredPermission)) {
+    const user = await RbacService.getUserPermissions(userId);
+
+    if (!user) {
+      res.status(401).json({
+        message: "User not found"
+      });
+      return;
+    }
+
+    const permissions = (user.roles ?? []).flatMap(role =>
+      (role.permissions ?? []).map(permission => permission.name)
+    );
+
+    if (!permissions.includes(requiredPermission)) {
       res.status(403).json({
         message: "Forbidden: insufficient permissions"
       });

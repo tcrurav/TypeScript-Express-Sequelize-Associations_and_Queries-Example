@@ -4,7 +4,7 @@ import { Role } from "./role.model.js";
 
 export class RbacService {
 
-  static async getUserPermissions(userId: number) {
+  static async getUserPermissions(userId: number): Promise<User | null> {
     return User.findByPk(userId, {
       include: [{
         model: Role,
