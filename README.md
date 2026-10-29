@@ -139,7 +139,6 @@ erDiagram
         number id PK
         string username
         string passwordHash
-        string role
     }
 
     Role {
