@@ -24,6 +24,8 @@ export class Bicycle extends Model<
 
   declare stock: number;
 
+  declare filename: string | null;
+
   declare createdAt: CreationOptional<Date>;
 
   declare updatedAt: CreationOptional<Date>;
@@ -65,6 +67,11 @@ Bicycle.init(
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       defaultValue: 0,
+    },
+
+    filename: {
+      type: DataTypes.TEXT,
+      allowNull: true,
     },
 
     createdAt: DataTypes.DATE,

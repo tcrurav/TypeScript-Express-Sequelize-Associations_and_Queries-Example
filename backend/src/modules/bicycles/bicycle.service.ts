@@ -46,6 +46,7 @@ export class BicycleService {
     description?: string | null;
     price: number;
     stock: number;
+    filename?: string | null;
   }) {
     return Bicycle.create(data);
   }
@@ -58,6 +59,7 @@ export class BicycleService {
       description?: string | null;
       price?: number;
       stock?: number;
+      filename?: string | null;
     }
   ) {
     return bicycle.update(data);
