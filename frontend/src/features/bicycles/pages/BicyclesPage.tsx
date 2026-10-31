@@ -32,6 +32,8 @@ function BicyclesPage() {
         try {
             await deleteBicycle(bicycleToDelete.id)
             setBicycleToDelete(null)
+        } catch {
+            // Keep the dialog open so the user can retry a failed backend deletion.
         } finally {
             deletingRef.current = false
             setDeleting(false)
@@ -77,6 +79,7 @@ function BicyclesPage() {
             {modalOpen && <BicycleModal bicycle={selectedBicycle} onSave={handleSave}
                 onClose={() => setModalOpen(false)} />}
             {bicycleToDelete && <BicycleDeleteModal bicycle={bicycleToDelete} deleting={deleting}
+                error={error}
                 onConfirm={() => void handleDelete()} onClose={() => setBicycleToDelete(null)} />}
         </main>
     )

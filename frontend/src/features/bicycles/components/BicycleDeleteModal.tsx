@@ -5,11 +5,12 @@ import type { Bicycle } from '../types/bicycle'
 interface BicycleDeleteModalProps {
     bicycle: Bicycle
     deleting: boolean
+    error: string | null
     onConfirm: () => void
     onClose: () => void
 }
 
-function BicycleDeleteModal({ bicycle, deleting, onConfirm, onClose }: BicycleDeleteModalProps) {
+function BicycleDeleteModal({ bicycle, deleting, error, onConfirm, onClose }: BicycleDeleteModalProps) {
     const dialogRef = useRef<HTMLDialogElement>(null)
     const titleId = useId()
     const descriptionId = useId()
@@ -34,6 +35,7 @@ function BicycleDeleteModal({ bicycle, deleting, onConfirm, onClose }: BicycleDe
                 {' '}This action cannot be undone.
             </p>
             {deleting && <p role="status" className="mb-4">Deleting bicycle...</p>}
+            {error && <p role="alert" className="mb-4 text-red-600">{error}</p>}
             <div className="flex justify-end gap-2">
                 <Button autoFocus type="button" variant="secondary" disabled={deleting}
                     onClick={onClose} className="rounded px-4 py-2 disabled:opacity-50">

@@ -34,9 +34,9 @@ export function useBicycles() {
             else {
                 await bicycleService.update(id, payload)
             }
-        } catch {
-            setError('Could not save the bicycle.')
-            throw new Error('Could not save bicycle')
+        } catch (error) {
+            setError(error instanceof Error ? error.message : 'Could not save the bicycle.')
+            throw error
         }
         await loadBicycles()
     }
@@ -45,9 +45,11 @@ export function useBicycles() {
         try {
             setError(null)
             await bicycleService.remove(id)
+            setBicycles(previous => previous.filter(bicycle => bicycle.id !== id))
             await loadBicycles()
-        } catch {
-            setError('Could not delete the bicycle.')
+        } catch (error) {
+            setError(error instanceof Error ? error.message : 'Could not delete the bicycle.')
+            throw error
         }
     }
     
