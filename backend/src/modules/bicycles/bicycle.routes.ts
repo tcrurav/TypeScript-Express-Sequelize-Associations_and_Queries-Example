@@ -2,6 +2,7 @@ import { Router } from "express";
 import { BicycleController } from "./bicycle.controller.js";
 import { bearerAuth } from "../../middlewares/bearer-auth.middleware.js";
 import { authorize } from "../rbac/authorize.middleware.js";
+import { upload } from "../../middlewares/upload-middleware.js";
 
 const router = Router();
 
@@ -16,10 +17,11 @@ router.get("/:id", authorize("bicycles:read"), BicycleController.getById);
 
 router.get("/eagerly/:id", authorize("bicycles:read"), BicycleController.getEagerlyById);
 
-router.post("/", authorize("bicycles:create"), authorize("bicycles:create"),
+router.post("/", authorize("bicycles:create"), upload.single("image"),
     BicycleController.create);
 
-router.put("/:id", authorize("bicycles:update"), BicycleController.update);
+router.put("/:id", authorize("bicycles:update"), upload.single("image"),
+    BicycleController.update);
 
 router.delete("/:id", authorize("bicycles:delete"), BicycleController.delete);
 

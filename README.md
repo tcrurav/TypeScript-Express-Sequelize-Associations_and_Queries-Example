@@ -7,11 +7,14 @@ It contains:
     - built with React + tailwind CSS + headless UI. 
     - Connects to the backend via REST API, using basic and token bearer authentication.
     - It has a simple UI for login, registration, and CRUD operations for bicycles and their brands.
+    - An image upload feature for bicycles using multipart/form-data.
 * Backend:
     - Built with Node.js + Express + Sequelize + PostgreSQL. 
     - It provides REST API endpoints for the frontend.
     - Basic Authentication for login and registration
     - Token Bearer Authentication for protected endpoints.
+    - Middleware for Role-Based Access Control (RBAC) to manage user permissions.
+    - Multer middleware for handling image uploads. Publicly accessible images are stored in the backend's public/images folder.
     - End-points with BRUNO
     - 7 tables: users, bicycles, brands, bicycle_details, customers, orders and order_items.
     - Sequelize migrations and seeders for database initialization.
@@ -191,7 +194,7 @@ Three roles are defined:
 - `ADMIN` has all permissions.
 - `MANAGER` can manage bicycles and orders but cannot delete bicycles or manage users and roles.
 - `CUSTOMER` has limited permissions.
-- (*) Customers can only view their own orders. This restriction requires an additional ownership check.
+- (*) Customers will only view their own orders. This restriction requires an additional ownership check. Not implemented yet.
 - Permissions are assigned to roles, and roles are assigned to users through many-to-many relationships.
 - Authentication uses JWT Bearer Tokens, while authorization is enforced through RBAC middleware.
 - The backend is responsible for enforcing permissions, regardless of frontend restrictions.
@@ -202,8 +205,15 @@ Three roles are defined:
 * [Node](https://nodejs.org) - Install node.js from https://nodejs.org/es/download/. It's advisable to install the LTS version.
 * [VS Code](https://code.visualstudio.com/download) - Install Visual Studio Code from https://code.visualstudio.com/download/. It's advisable to install the LTS version.
 * [PostgreSQL](https://www.postgresql.org/download/) - Install PostgreSQL from https://www.postgresql.org/download/. It's advisable to install the LTS version.
+* [pgAdmin](https://www.pgadmin.org/download/) - Install pgAdmin from https://www.pgadmin.org/download/. It's advisable to install the LTS version.
 * [BRUNO](https://www.usebruno.com/download) - Install BRUNO from https://www.usebruno.com/download/. It's advisable to install the LTS version.
 * [Vite](https://vite.dev/) - The Build Tool for the Web
+* [React](https://reactjs.org/) - A JavaScript library for building user interfaces
+* [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework for rapid UI development
+* [Headless UI](https://headlessui.dev/) - Unstyled, fully accessible UI components, designed to integrate beautifully with Tailwind CSS
+* [Express](https://expressjs.com/) - Fast, unopinionated, minimalist web framework for Node.js
+* [Sequelize](https://sequelize.org/) - Sequelize is a promise-based Node.js ORM for Postgres, MySQL, MariaDB, SQLite and Microsoft SQL Server. It features solid transaction support, relations, eager and lazy loading, read replication and more.
+* [Multer](https://www.npmjs.com/package/multer) - Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files.
 
 ## Acknowledgments
 

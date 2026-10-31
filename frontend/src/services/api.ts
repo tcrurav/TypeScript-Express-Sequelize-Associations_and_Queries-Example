@@ -2,6 +2,10 @@ import { clearSession, getSession } from './session'
 
 const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:3000/api')
 
+export function bicycleImageUrl(filename: string): string {
+    return `${API_URL.replace(/\/api\/?$/, '')}/images/${encodeURIComponent(filename)}`
+}
+
 export async function apiFetch<T>(
     endpoint: string,
     options: RequestInit = {}

@@ -1,10 +1,11 @@
-import { useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import type { FormEvent } from 'react'
 import Button from '../../../components/ui/Button'
 import type { Bicycle, BicyclePayload } from '../types/bicycle'
 import BicycleFormFields from './BicycleFormFields'
 import type { BicycleFormValues } from './BicycleFormFields'
 import { useBrands } from '../../brands/hooks/useBrands'
+import { bicycleImageUrl } from '../../../services/api'
 
 interface BicycleFormProps {
     bicycle: Bicycle | null
@@ -25,12 +26,22 @@ function BicycleForm({ bicycle, onSave, onCancel, onSavingChange }: BicycleFormP
     const [saving, setSaving] = useState(false)
     const [error, setError] = useState<string | null>(null)
     const submitting = useRef(false)
+    const imageId = useId()
+    const [image, setImage] = useState<File | undefined>()
+    const [preview, setPreview] = useState<string | undefined>()
+
+    useEffect(() => {
+        return () => { if (preview) URL.revokeObjectURL(preview) }
+    }, [preview])
+
+    const imageUrl = image ? preview : bicycle?.filename ? bicycleImageUrl(bicycle.filename) : undefined
 
     async function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         if (submitting.current) return
 
         const payload: BicyclePayload = {
+            image,
             brandId: Number(values.brandId),
             model: values.model.trim(),
             description: values.description.trim() || null,
@@ -51,8 +62,8 @@ function BicycleForm({ bicycle, onSave, onCancel, onSavingChange }: BicycleFormP
         setError(null)
         try {
             await onSave(payload)
-        } catch {
-            setError('Could not save the bicycle. Please try again.')
+        } catch (error) {
+            setError(error instanceof Error ? error.message : 'Could not save the bicycle. Please try again.')
         } finally {
             submitting.current = false
             setSaving(false)
@@ -67,6 +78,30 @@ function BicycleForm({ bicycle, onSave, onCancel, onSavingChange }: BicycleFormP
             {!loading && !brandsError && brands.length === 0 && <p role="status">No brands available. Create one in the Brands section before saving a bicycle.</p>}
             <BicycleFormFields values={values} brands={brands} disabled={saving || loading || !!brandsError || brands.length === 0}
                 onChange={(field, value) => setValues((previous) => ({ ...previous, [field]: value }))} />
+            <div className="space-y-2">
+                <label htmlFor={imageId} className="block font-medium">Bicycle image</label>
+                {imageUrl && <img src={imageUrl} alt="Bicycle preview" className="h-40 w-full rounded border border-gray-200 object-contain" />}
+                <input id={imageId} type="file" accept="image/jpeg,image/png,image/webp,image/gif,image/avif"
+                    disabled={saving} className="block w-full text-sm"
+                    aria-describedby={`${imageId}-help`}
+                    onChange={(event) => {
+                        const file = event.target.files?.[0]
+                        if (file && (!['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/avif'].includes(file.type) || file.size > 5 * 1024 * 1024)) {
+                            setError('Choose a JPEG, PNG, WebP, GIF or AVIF image up to 5 MB.')
+                            event.target.value = ''
+                            setImage(undefined)
+                            setPreview(undefined)
+                            return
+                        }
+                        setError(null)
+                        setImage(file)
+                        setPreview(file ? URL.createObjectURL(file) : undefined)
+                    }} />
+                <p id={`${imageId}-help`} className="text-sm text-gray-600">
+                    JPEG, PNG, WebP, GIF or AVIF. Maximum 5 MB.
+                    {bicycle && ' Leave empty to keep the current image.'}
+                </p>
+            </div>
             {error && <p role="alert" className="text-red-600">{error}</p>}
             <div className="flex justify-end gap-2">
                 <Button type="button" variant="secondary" disabled={saving} onClick={onCancel}

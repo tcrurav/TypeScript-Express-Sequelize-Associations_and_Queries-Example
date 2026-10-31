@@ -1,5 +1,6 @@
 import Button from '../../../components/ui/Button'
 import type { Bicycle } from '../types/bicycle'
+import { bicycleImageUrl } from '../../../services/api'
 
 interface BicycleRowProps {
     bicycle: Bicycle
@@ -23,7 +24,12 @@ function BicycleRow({
                 </div>
                 <div className="min-w-0">
                     <dt className="mb-1 text-sm text-gray-600 lg:sr-only">Model</dt>
-                    <dd className="[overflow-wrap:anywhere]">{bicycle.model}</dd>
+                    <dd className="space-y-2 [overflow-wrap:anywhere]">
+                        {bicycle.filename ? <img src={bicycleImageUrl(bicycle.filename)} alt={`${bicycle.brand} ${bicycle.model}`}
+                            loading="lazy" className="h-24 w-32 rounded border border-gray-200 bg-white object-contain" />
+                            : <span className="block text-sm text-gray-500">No image</span>}
+                        <span className="block">{bicycle.model}</span>
+                    </dd>
                 </div>
                 <div className="min-w-0">
                     <dt className="mb-1 text-sm text-gray-600 lg:sr-only">Price</dt>
