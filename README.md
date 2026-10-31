@@ -106,6 +106,7 @@ erDiagram
         string description
         number price
         number stock
+        string fileName
     }
 
     BicycleDetail {
