@@ -56,14 +56,14 @@ export class AuthService {
       await UserRole.create({ userId: user.id, roleId: customerRole.id }, { transaction });
 
       return user;
-    }); 
+    });
   }
 
-  static async generateToken(userId: number, userRole: string): Promise<string | null> {
+  static async generateToken(userId: number): Promise<string | null> {
     const secret = env.JWT_SECRET;
     if (!secret) throw new Error("JWT_SECRET not configured");
 
-    const token = jwt.sign({ role: userRole }, secret, {
+    const token = jwt.sign({}, secret, {
       algorithm: "HS256",
       subject: String(userId),
       expiresIn: "1h",
