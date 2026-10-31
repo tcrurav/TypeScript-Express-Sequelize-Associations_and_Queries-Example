@@ -37,6 +37,11 @@ export async function bearerAuth(req: Request, res: Response, next: NextFunction
             return;
         }
 
+        // anything inside locals allows to share info between controllers and middlewares
+        res.locals.authUser = {
+            user
+        };
+
         next();
     } catch (error) {
         if (error instanceof jwt.JsonWebTokenError || error instanceof jwt.TokenExpiredError) {

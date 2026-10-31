@@ -8,20 +8,10 @@ http:
   url: http://localhost:3000/api/bicycles
   body:
     type: json
-    data: "{\r
-
-      \  \"brand\": \"BH\",\r
-
-      \  \"model\": \"Sky\",\r
-
-      \  \"description\": \"Great for any occassion\",\r
-
-      \  \"price\": 189.99,\r
-
-      \  \"stock\": 10\r
-
-      }"
-  auth: inherit
+    data: ""
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3OTM0MjU5MTIsImV4cCI6MTc5MzQyOTUxMiwiYXVkIjoiYmljeWNsZS1zaG9wLWNsaWVudCIsImlzcyI6ImJpY3ljbGUtc2hvcC1hcGkiLCJzdWIiOiIyIn0.YAnkvwxgdgZIpNVx184zc3tBjs0S-aMy5-vIfInJ9WU
 
 settings:
   encodeUrl: true

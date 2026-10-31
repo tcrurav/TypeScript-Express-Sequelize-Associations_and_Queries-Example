@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { BicycleDetailController } from "./bicycle-detail.controller.js";
-import { bearerAuth } from "../../middlewares/bearer-auth-middleware.js";
+import { bearerAuth } from "../../middlewares/bearer-auth.middleware.js";
 
 const router = Router();
 

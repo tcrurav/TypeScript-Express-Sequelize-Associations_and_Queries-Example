@@ -86,6 +86,10 @@ erDiagram
     Customer ||--o{ Order : has
     Order ||--o{ OrderItem : has
     Bicycle ||--o{ OrderItem : has
+    User ||--o{ UserRole : has
+    Role ||--o{ UserRole : has
+    Role ||--o{ RolePermission : has
+    Permission ||--o{ RolePermission : has
 
     Brand {
         number id PK
@@ -135,9 +139,62 @@ erDiagram
         number id PK
         string username
         string passwordHash
-        string role
+    }
+
+    Role {
+        number id PK
+        string name
+    }
+    
+    UserRole {
+        number userId FK
+        number roleId FK
+    }
+
+    Permission {
+        number id PK
+        string name
+    }
+
+    RolePermission {
+        number roleId FK
+        number permissionId FK
     }
 ```
+
+## RBAC (Role-Based Access Control)
+
+The application implements Role-Based Access Control (RBAC) to manage user permissions.
+
+Three roles are defined:
+
+- **ADMIN**: Full access to the application.
+- **MANAGER**: Can manage bicycles, inventory, and orders.
+- **CUSTOMER**: Can browse bicycles and create and view their own orders.
+
+### RBAC Permissions Matrix
+
+| Permission | ADMIN | MANAGER | CUSTOMER |
+|---|:---:|:---:|:---:|
+| `bicycles:read` | ✅ | ✅ | ✅ |
+| `bicycles:create` | ✅ | ✅ | ❌ |
+| `bicycles:update` | ✅ | ✅ | ❌ |
+| `bicycles:delete` | ✅ | ❌ | ❌ |
+| `orders:read` | ✅ | ✅ | ✅* |
+| `orders:create` | ✅ | ✅ | ✅ |
+| `orders:update` | ✅ | ✅ | ❌ |
+| `users:manage` | ✅ | ❌ | ❌ |
+| `roles:manage` | ✅ | ❌ | ❌ |
+
+**Notes:**
+
+- `ADMIN` has all permissions.
+- `MANAGER` can manage bicycles and orders but cannot delete bicycles or manage users and roles.
+- `CUSTOMER` has limited permissions.
+- (*) Customers can only view their own orders. This restriction requires an additional ownership check.
+- Permissions are assigned to roles, and roles are assigned to users through many-to-many relationships.
+- Authentication uses JWT Bearer Tokens, while authorization is enforced through RBAC middleware.
+- The backend is responsible for enforcing permissions, regardless of frontend restrictions.
 
 ## Built With
 

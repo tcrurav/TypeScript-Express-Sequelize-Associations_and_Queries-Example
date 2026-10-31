@@ -8,7 +8,7 @@ http:
   url: http://localhost:3000/api/auth/register
   auth:
     type: basic
-    username: nestor
+    username: julio
     password: mysecret
 
 settings:
