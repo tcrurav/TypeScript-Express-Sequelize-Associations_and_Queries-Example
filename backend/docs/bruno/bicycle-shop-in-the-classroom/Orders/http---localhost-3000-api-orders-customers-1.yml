@@ -8,19 +8,7 @@ http:
   url: http://localhost:3000/api/orders/customers/1
   body:
     type: json
-    data: "{\r
-
-      \  \"brand\": \"BH\",\r
-
-      \  \"model\": \"Sky\",\r
-
-      \  \"description\": \"Great for any occassion\",\r
-
-      \  \"price\": 189.99,\r
-
-      \  \"stock\": 10\r
-
-      }"
+    data: ""
   auth: inherit
 
 settings:

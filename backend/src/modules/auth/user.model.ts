@@ -7,14 +7,16 @@ import {
 } from "sequelize";
 
 import { sequelize } from "../../config/database.js";
+import { Role } from "../rbac/role.model.js";
 
 export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   declare id: CreationOptional<number>;
   declare username: CreationOptional<String>;
   declare passwordHash: CreationOptional<String>;
-  declare role: CreationOptional<String>;
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
+
+  declare roles?: Role[];
 }
 
 User.init(
@@ -30,9 +32,6 @@ User.init(
       unique: true },
     passwordHash: {
       type: DataTypes.STRING(255),
-      allowNull: false },
-    role: {
-      type: DataTypes.STRING(100),
       allowNull: false },
     createdAt: DataTypes.DATE, updatedAt: DataTypes.DATE,
   },

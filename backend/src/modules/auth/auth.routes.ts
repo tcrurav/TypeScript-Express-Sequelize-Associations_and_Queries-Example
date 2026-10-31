@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { AuthController } from "./auth.controller.js";
-import { extractBasicAuthHeader } from "../../middlewares/basic-auth-middleware.js";
+import { extractBasicAuthHeader } from "../../middlewares/basic-auth.middleware.js";
 
 const router = Router();
 

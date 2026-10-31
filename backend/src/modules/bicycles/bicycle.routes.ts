@@ -1,23 +1,26 @@
 import { Router } from "express";
 import { BicycleController } from "./bicycle.controller.js";
-import { bearerAuth } from "../../middlewares/bearer-auth-middleware.js";
+import { bearerAuth } from "../../middlewares/bearer-auth.middleware.js";
+import { authorize } from "../rbac/authorize.middleware.js";
 
 const router = Router();
 
 router.use(bearerAuth);
 
-router.get("/", BicycleController.getAll);
+router.get("/", authorize("bicycles:read"), BicycleController.getAll);
 
-router.get("/eagerly/frame-material/:frameMaterial", BicycleController.getAllEagerlyByFrameMaterial);
+router.get("/eagerly/frame-material/:frameMaterial", authorize("bicycles:read"),
+    BicycleController.getAllEagerlyByFrameMaterial);
 
-router.get("/:id", BicycleController.getById);
+router.get("/:id", authorize("bicycles:read"), BicycleController.getById);
 
-router.get("/eagerly/:id", BicycleController.getEagerlyById);
+router.get("/eagerly/:id", authorize("bicycles:read"), BicycleController.getEagerlyById);
 
-router.post("/", BicycleController.create);
+router.post("/", authorize("bicycles:create"), authorize("bicycles:create"),
+    BicycleController.create);
 
-router.put("/:id", BicycleController.update);
+router.put("/:id", authorize("bicycles:update"), BicycleController.update);
 
-router.delete("/:id", BicycleController.delete);
+router.delete("/:id", authorize("bicycles:delete"), BicycleController.delete);
 
 export default router;

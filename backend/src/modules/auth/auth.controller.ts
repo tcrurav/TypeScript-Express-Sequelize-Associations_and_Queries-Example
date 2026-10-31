@@ -17,7 +17,7 @@ export class AuthController {
 				return;
 			}
 
-			const token = await AuthService.generateToken(user.id, String(user.role));
+			const token = await AuthService.generateToken(user.id);
 
 			res.status(200).json({ message: "Auth OK", token, tokenType: "Bearer", expiresIn: 3600 });
 		} catch (error) {
@@ -37,7 +37,7 @@ export class AuthController {
 
 			const user = await AuthService.register(username, password);
 
-			const token = await AuthService.generateToken(user.id, String(user.role));
+			const token = await AuthService.generateToken(user.id);
 
 			res.status(200).json({ message: "Auth OK", token, tokenType: "Bearer", expiresIn: 3600 });
 		} catch (error) {
