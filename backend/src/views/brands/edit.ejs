@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar marca</title>
+</head>
+
+<body>
+
+    <h1>Editar marca</h1>
+
+    <form action="/brands/<%= brand.id %>" method="POST">
+
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" value="<%= brand.name %>" required>
+
+        <button type="submit">
+            Actualizar
+        </button>
+
+    </form>
+
+    <p><a href="/brands">Volver al listado</a></p>
+
+</body>
+
+</html>
