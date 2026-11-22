@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marcas</title>
+</head>
+
+<body>
+  <h1>Listado de marcas</h1>
+  <p> <a href="/brands/create">Nueva marca</a> </p>
+
+  <table border="1">
+    <thead>
+      <tr> <th>ID</th> <th>Nombre</th> <th>Acciones</th> </tr>
+    </thead>
+    <tbody>
+      <% brands.forEach(brand=> { %>
+        <tr>
+          <td><%= brand.id %></td>
+          <td><%= brand.name %></td>
+          <td>
+            <a href="/brands/<%= brand.id %>">Ver</a>
+            <a href="/brands/<%= brand.id %>/edit">Editar</a>
+            <form action="/brands/<%= brand.id %>/delete" method="POST" style="display:inline">
+              <button type="submit">Eliminar</button>
+            </form>
+          </td>
+        </tr>
+        <% }) %>
+    </tbody>
+  </table>
+
+</body>
+</html>
